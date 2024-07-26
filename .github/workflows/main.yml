@@ -1,0 +1,23 @@
+name: Redeploy on Render
+
+on: 
+  push:
+    branches: [ main ]
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v3
+    
+            - name: Setup Node.js
+              uses: actions/setup-node@v3
+              with:
+                  node-version: '16.x'
+    
+            - name: Trigger front-end redeploy
+              run: |
+                curl -X GET \
+                  https://api.render.com/deploy/srv-cqhrppks1f4s73ambm8g?key=IO2pyehJaj8
